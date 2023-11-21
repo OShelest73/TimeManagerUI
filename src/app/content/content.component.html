@@ -1,0 +1,9 @@
+<div>
+    <app-buttons
+        (loginEvent)="showComponent('login')"
+        (logoutEvent)="showComponent('login'); logout()"
+    />
+
+	<app-login-form *ngIf="componentToShow == 'login'" (onSubmitLoginEvent)="onLogin($event)" (onSubmitRegisterEvent)="onRegister($event)"/>
+	<app-workspaces *ngIf="componentToShow == 'workspaces'"/>
+</div>
