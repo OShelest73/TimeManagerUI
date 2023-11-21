@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +12,8 @@ import { ContentComponent } from './content/content.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { WorkspacesComponent } from './workspaces/workspaces.component';
 import { WorkspaceFormComponent } from './workspace-form/workspace-form.component';
+import { ModalComponentComponent } from './modal-component/modal-component.component';
+
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { WorkspaceFormComponent } from './workspace-form/workspace-form.componen
     ContentComponent,
     ButtonsComponent,
     WorkspacesComponent,
-    WorkspaceFormComponent
+    WorkspaceFormComponent,
+    ModalComponentComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent]
 })

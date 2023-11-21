@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AxiosService } from "../axios.service";
 import { Workspace } from '../../models/workspace';
 import { JwtService } from '../jwt.service';
+import { ModalService } from '../modal.service';
 
 @Component({
   selector: 'app-workspaces',
@@ -12,7 +13,8 @@ export class WorkspacesComponent {
   data: Workspace[] = [];
   permissions: String[] = [''];
 
-  constructor(private axiosService: AxiosService, private jwtService: JwtService) {}
+  constructor(private axiosService: AxiosService, private jwtService: JwtService,
+    public modalService: ModalService) {}
 
   ngOnInit(): void {
     this.axiosService.request(
@@ -43,8 +45,4 @@ export class WorkspacesComponent {
     }
 
   }
-
-    createWorkspace(): void{
-
-    }
 }

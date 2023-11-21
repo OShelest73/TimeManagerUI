@@ -9,9 +9,13 @@
             </div>
 
             <div *ngIf="permissions.includes('Owner') || permissions.includes('Workspaces')" style="position: fixed; right: 30px; bottom: 30px;" class="text-white">
-                <button class="btn btn-main" (click)="createWorkspace()">Создать</button>
+                <button class="btn btn-main" (click)="modalService.open()">Создать</button>
             </div>
+            <app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Создать рабочее пространство'">
+                <app-workspace-form>
 
+                </app-workspace-form>
+            </app-modal-component>
         </div>
     </div>
 </div>
