@@ -26,7 +26,7 @@ export class WorkspacesComponent {
         this.data = response.data;
       }).catch(
       (error) => {
-		if (error.response.status === 401) {
+		    if (error.response.status === 401 ) {
         	this.axiosService.setAuthToken(null);
         } else {
         	this.data = error.response.code;

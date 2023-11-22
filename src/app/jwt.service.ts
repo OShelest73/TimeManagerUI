@@ -19,5 +19,14 @@ export class JwtService {
     const decodedToken = this.decodeToken(token);
     return decodedToken ? decodedToken[claimKey] : null;
   }
+
+  public checkExpiration(token: string): boolean{
+    if(this.jwtHelper.isTokenExpired(token)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   
 }
