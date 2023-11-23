@@ -1,21 +1,19 @@
 <div class="row justify-content-md-center">
-    <div class="col-4">
-        <div class="card" style="width: '18rem;'">
-            <div class="card-body">
-                <h5 class="card-title">Рабочие пространства</h5>
-                <ul>
-                    <li *ngFor="let workspace of data">{{workspace.name}}</li>
-                </ul>
+    <div class="col-6">
+        <h1>Ваши рабочие пространства</h1>
+        <div *ngFor="let workspace of data" class="element-entry">
+            <div class="element-entry-text">
+                {{workspace.name}}
             </div>
-
-            <div *ngIf="permissions.includes('Owner') || permissions.includes('Workspaces')" style="position: fixed; right: 30px; bottom: 30px;" class="text-white">
-                <button class="btn btn-main" (click)="modalService.open()">Создать</button>
+            <div class="element-entry-actions">
+                <a class="btn btn-outline-primary">Открыть</a>
             </div>
-            <app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Создать рабочее пространство'">
-                <app-workspace-form>
-
-                </app-workspace-form>
-            </app-modal-component>
         </div>
     </div>
 </div>
+
+<app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Создать рабочее пространство'">
+    <app-workspace-form>
+
+    </app-workspace-form>
+</app-modal-component>

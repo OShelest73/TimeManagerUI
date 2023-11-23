@@ -35,6 +35,7 @@ import { ModalComponentComponent } from './modal-component/modal-component.compo
     ReactiveFormsModule,
     AppRoutingModule
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

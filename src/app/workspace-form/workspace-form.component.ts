@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AxiosService } from '../axios.service';
 import { ModalService } from '../modal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workspace-form',
@@ -9,7 +10,9 @@ import { ModalService } from '../modal.service';
   styleUrls: ['./workspace-form.component.css']
 })
 export class WorkspaceFormComponent {
-  constructor(private axiosService: AxiosService, private modalService: ModalService) {}
+  constructor(private axiosService: AxiosService, 
+              private modalService: ModalService,
+              private router: Router) {}
 
   evaluationMethods: string[] = [
     'KPI',
@@ -35,8 +38,8 @@ export class WorkspaceFormComponent {
         "POST",
         "/workspace/add",
         {
-          "name": this.form.controls.workspaceName.value,
-          "evaluationMethod": this.form.controls.evalMethod.value
+          name : this.form.controls.workspaceName.value,
+          evaluationMethod : this.form.controls.evalMethod.value
         }
       ).catch(
         (error) => {
@@ -46,6 +49,7 @@ export class WorkspaceFormComponent {
         }
       );
       this.modalService.close();
+      this.router.navigate(['workspaces']);
     }
     
   }

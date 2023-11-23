@@ -3,6 +3,7 @@ import { AxiosService } from "../axios.service";
 import { Workspace } from '../../models/workspace';
 import { JwtService } from '../jwt.service';
 import { ModalService } from '../modal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workspaces',
@@ -14,7 +15,7 @@ export class WorkspacesComponent {
   permissions: String[] = [''];
 
   constructor(private axiosService: AxiosService, private jwtService: JwtService,
-    public modalService: ModalService) {}
+    public modalService: ModalService, private router: Router) {}
 
   ngOnInit(): void {
     this.axiosService.request(
@@ -28,6 +29,7 @@ export class WorkspacesComponent {
       (error) => {
 		    if (error.response.status === 401 ) {
         	this.axiosService.setAuthToken(null);
+          this.router.navigate(['']);
         } else {
         	this.data = error.response.code;
         }

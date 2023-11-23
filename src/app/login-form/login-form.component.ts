@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { AxiosService } from '../axios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -7,13 +9,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class LoginFormComponent {
 
-  @Output() onSubmitLoginEvent = new EventEmitter();
-  @Output() onSubmitRegisterEvent = new EventEmitter();
-
   active: string = "login";
   fullName: string = ""
   email: string = "";
   password: string = "";
+
+  constructor(private axiosService: AxiosService, private router: Router){
+
+  }
 
   onLoginTab(): void {
     this.active = "login";
@@ -23,14 +26,43 @@ export class LoginFormComponent {
     this.active = "register";
   }
 
-  onSubmitLogin(): void {
-    this.onSubmitLoginEvent.emit({"email": this.email, "password": this.password});
+  onSubmitLogin(): void{
+    this.axiosService.request(
+      "POST",
+      "/login",
+      {
+        email: this.email,
+        password: this.password
+      }
+    ).then(
+      response => {
+        this.axiosService.setAuthToken(response.data.token);
+        this.router.navigate(['workspaces']);
+    }).catch(
+      error => {
+          this.axiosService.setAuthToken(null);
+          this.router.navigate(['']);
+      }
+    );
   }
-
-  onSubmitRegister(): void {
-    this.onSubmitRegisterEvent.emit({
-      "fullName": this.fullName,
-      "email": this.email,
-      "password": this.password});
+  onSubmitRegister(): void{
+    this.axiosService.request(
+      "POST",
+      "/register",
+      {
+        fullName: this.fullName,
+        email: this.email,
+        password: this.password
+      }
+    ).then(
+      response => {
+        this.axiosService.setAuthToken(response.data.token);
+        this.router.navigate(['workspaces']);
+    }).catch(
+      error => {
+          this.axiosService.setAuthToken(null);
+          this.router.navigate(['']);
+      }
+    );
   }
 }

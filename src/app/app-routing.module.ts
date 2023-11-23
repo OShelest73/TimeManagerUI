@@ -5,7 +5,8 @@ import { WorkspacesComponent } from './workspaces/workspaces.component';
 
 const routes: Routes = [
   {path: '', component: LoginFormComponent},
-  {path: 'workspaces', component: WorkspacesComponent}
+  {path: 'workspaces', component: WorkspacesComponent},
+  {path: 'tasks', component: WorkspacesComponent},
 ];
 
 @NgModule({

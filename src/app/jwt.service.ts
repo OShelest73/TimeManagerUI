@@ -20,12 +20,12 @@ export class JwtService {
     return decodedToken ? decodedToken[claimKey] : null;
   }
 
-  public checkExpiration(token: string): boolean{
-    if(this.jwtHelper.isTokenExpired(token)){
-      return true;
+  public checkTokenValidity(token: string): boolean{
+    if(token === null || this.jwtHelper.isTokenExpired(token)){
+      return false;
     }
     else{
-      return false;
+      return true;
     }
   }
   

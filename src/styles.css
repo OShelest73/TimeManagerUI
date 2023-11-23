@@ -1,1 +1,256 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700;900&family=Roboto:wght@300;400;700;900&display=swap');
+
+.nav-links {
+    display: flex;
+    text-align: center;
+}
+
+.nav-section {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-link {
+    padding-left: 1rem;
+}
+
+.logo-link{
+    text-align: left;
+    width: 20%;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.page-heading {
+    text-align: center;
+}
+
+.form-layout {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.form-layout a {
+    font-weight: 700;
+    color: #1B6EC2;
+}
+
+.form-layout a:hover {
+    text-decoration: underline;
+}
+
+.btn:focus,
+.form-control:focus {
+    box-shadow: none;
+}
+
+.btn-order {
+    background-color: #FFFFFF;
+    border: 0px solid #DDDDDD;
+    border-radius: 10px;
+}
+
+.btn-main {
+    color: #FFFFFF;
+    background-color: #1B6EC2;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 900;
+    border-radius: 10px;
+    border-width: 3px;
+}
+
+.btn-main:hover {
+    color: #1B6EC2;
+    border-color: #1B6EC2;
+    background-color: #FFFFFF;
+    border-width: 3px;
+}
+
+.input-section {
+    margin-bottom: 2rem;
+}
+
+.input-description {
+    margin-bottom: 0.5rem;
+}
+
+.span-danger{
+    display: block;
+    color: red;
+}
+
+.center-children {
+    display: flex;
+    justify-content: center;
+}
+
+select {
+    width: 100%;
+    overflow: hidden;
+    border: 0;
+}
+
+option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
+    margin: 10px 0;
+    padding: 20px;
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+
+option[selected] {
+    background-color: #1b6ec2;
+}
+
+/*------------------------------   USERS/WORKSPACES   -------------------------------------*/
+.element-entry {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
+    margin: 10px 0;
+    padding: 20px;
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+
+.element-entry-text {
+    display: flex;
+    flex-grow: 1;
+}
+
+.element-entry-actions{
+    justify-content: flex-end;
+}
+
+/*------------------------------   FILTERS   -------------------------------------*/
+.task-content {
+    width: 70%;
+    margin: 20px 0;
+    border-radius: 20px;
+}
+
+.task-text{
+    width: 40%;
+}
+
+.task-info{
+    width: 20%;
+}
+
+.user-info{
+    width: 30%;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 20px 0;
+}
+
+.search-box{
+    display: flex;
+    flex-direction: row;
+}
+
+.search-btn{
+    flex-grow: 1;
+}
+
+.filters {
+    margin: 1rem;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.filters a {
+    margin-top: 1rem;
+    color: black;
+    text-decoration: none;
+}
+
+.filters a:hover {
+    cursor: pointer;
+}
+
+/*------------------------------   TASKS   -------------------------------------*/
+
+.task-entry {
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+
+.task-entry-text {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 10px;
+    padding-left: 20px;
+    background-color: #FFFFFF;
+}
+
+.task-entry-text-title {
+    padding-top: 10px;
+    flex-grow: 1;
+}
+
+.task-entry-text-category {
+    text-transform: uppercase;
+    color: darkgrey;
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+}
+
+.task-entry-status {
+    width: 50px;
+}
+
+.task-entry-status {
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    padding-top: 1rem;
+    padding-left: 0.2rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+}
+
+.task-entry-status-text {
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: #FFFFFF;
+    padding: 5px;
+    text-align: center;
+    line-height: 1.75;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 1.2px;
+}
