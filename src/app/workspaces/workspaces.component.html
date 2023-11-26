@@ -6,10 +6,14 @@
                 {{workspace.name}}
             </div>
             <div class="element-entry-actions">
-                <a class="btn btn-outline-primary">Открыть</a>
+                <a routerLink="/workspace/{{workspace.id}}" class="btn btn-outline-primary">Открыть</a>
             </div>
         </div>
     </div>
+</div>
+
+<div *ngIf="permissions.includes('Owner') || permissions.includes('Workspaces')" style="position: fixed; right: 30px; bottom: 30px;">
+    <button class="btn btn-main" (click)="modalService.open()">Создать</button>
 </div>
 
 <app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Создать рабочее пространство'">

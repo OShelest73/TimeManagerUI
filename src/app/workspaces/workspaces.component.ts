@@ -4,6 +4,7 @@ import { Workspace } from '../../models/workspace';
 import { JwtService } from '../jwt.service';
 import { ModalService } from '../modal.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-workspaces',
@@ -38,13 +39,13 @@ export class WorkspacesComponent {
     this.roleDefiner();
   }
 
-  roleDefiner() : void {
-    const token = this.axiosService.getAuthToken()
-    
-    if(token !== null)
-    {
-        this.permissions = this.jwtService.getClaim(token, 'usersPermissions');
-    }
+    roleDefiner() : void {
+      const token = this.axiosService.getAuthToken()
+      
+      if(token !== null)
+      {
+          this.permissions = this.jwtService.getClaim(token, 'usersPermissions');
+      }
 
-  }
+    }
 }
