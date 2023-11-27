@@ -43,6 +43,7 @@ constructor(private axiosService: AxiosService,
   submitTask() {
     if(!this.form.invalid)
     {
+      console.log(this.form);
       this.axiosService.request(
         "POST",
         "/task/add",
@@ -62,7 +63,7 @@ constructor(private axiosService: AxiosService,
         }
       );
       this.modalService.close();
-      this.router.navigate(['workspaces']);
+      this.router.navigate([`workspaces/${this.workspaceId}`]);
     }
     
   }

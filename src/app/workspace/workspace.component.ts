@@ -17,7 +17,8 @@ export class WorkspaceComponent {
   private subscription: Subscription;
   permissions: String[] = [''];
   tasks: Task[] = [];
-
+  startDate: Date[] = [];
+ 
   constructor(private axiosService: AxiosService, private jwtService: JwtService, private router: Router,
     private activateRoute: ActivatedRoute, public modalService: ModalService){
       this.subscription = activateRoute.params.subscribe(params=>this.workspaceId=params["id"]);
@@ -53,4 +54,5 @@ export class WorkspaceComponent {
     }
 
   }
+    
 }
