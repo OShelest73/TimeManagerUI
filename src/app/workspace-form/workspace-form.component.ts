@@ -14,32 +14,21 @@ export class WorkspaceFormComponent {
               private modalService: ModalService,
               private router: Router) {}
 
-  evaluationMethods: string[] = [
-    'KPI',
-    'Story Points'
-  ];
-
   form = new FormGroup({
     workspaceName: new FormControl<string>('', Validators.required),
-    evalMethod: new FormControl(this.evaluationMethods[0], Validators.required)
   });
 
   get workspaceName(){
     return this.form.controls.workspaceName as FormControl;
   }
-  get evalMethod(){
-    return this.form.controls.evalMethod as FormControl;
-  }
-
   submitWorkspace() {
-    if(this.form.controls.workspaceName.errors === null && this.form.controls.evalMethod.errors === null)
+    if(this.form.controls.workspaceName.errors === null)
     {
       this.axiosService.request(
         "POST",
         "/workspace/add",
         {
-          name : this.form.controls.workspaceName.value,
-          evaluationMethod : this.form.controls.evalMethod.value
+          name : this.form.controls.workspaceName.value
         }
       ).catch(
         (error) => {

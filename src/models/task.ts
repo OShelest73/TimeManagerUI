@@ -5,6 +5,6 @@ export interface Task{
     notes: string;
     startDate: Date;
     finishDate: Date;
-    status?: string;
-    storyPoint?: number;
+    status: string;
+    storyPoint: number;
 }

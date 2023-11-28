@@ -15,6 +15,10 @@ import { ModalComponentComponent } from './modal-component/modal-component.compo
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskFormComponent } from './task-form/task-form.component';
+import { UsersComponent } from './users/users.component';
+import { KanbanComponent } from './kanban/kanban.component';
+import { ListComponent } from './list/list.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { TaskFormComponent } from './task-form/task-form.component';
     ModalComponentComponent,
     WorkspaceComponent,
     TasksComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    UsersComponent,
+    KanbanComponent,
+    ListComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

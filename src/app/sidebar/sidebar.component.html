@@ -1,0 +1,8 @@
+<div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
+    <button class="btn btn-outline-primary">Управление пользователями</button>
+        <button class="btn btn-outline-primary" (click)="toggle()">Переключить отображение</button>
+        <button class="btn btn-outline-primary" (click)="openModal()">Добавить задание</button>
+</div>
+<button class="sidebar-toggle" (click)="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+</button>

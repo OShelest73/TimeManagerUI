@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div *ngIf="permissions.includes('Owner') || permissions.includes('Workspaces')" style="position: fixed; right: 30px; bottom: 30px;">
+<div *ngIf="permissions.includes('Workspaces')" style="position: fixed; right: 30px; bottom: 30px;">
     <button class="btn btn-main" (click)="modalService.open()">Создать</button>
 </div>
 

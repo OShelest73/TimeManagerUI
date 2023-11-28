@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AxiosService } from '../axios.service';
 import { ModalService } from '../modal.service';
 import { Router } from '@angular/router';
+import { currentDateValidator, dateRangeValidator } from '../dateTimeValidators';
 
 @Component({
   selector: 'app-task-form',
@@ -20,9 +21,9 @@ constructor(private axiosService: AxiosService,
     taskName: new FormControl<string>('', Validators.required),
     description: new FormControl<string>('', Validators.required),
     notes: new FormControl<string>(''),
-    startDate: new FormControl(new Date()),
-    finishDate: new FormControl(new Date())
-  });
+    startDate: new FormControl(new Date(), currentDateValidator),
+    finishDate: new FormControl(new Date(), currentDateValidator)
+  }, { validators: dateRangeValidator() });
 
   get taskName(){
     return this.form.controls.taskName as FormControl;
@@ -43,7 +44,6 @@ constructor(private axiosService: AxiosService,
   submitTask() {
     if(!this.form.invalid)
     {
-      console.log(this.form);
       this.axiosService.request(
         "POST",
         "/task/add",
@@ -63,8 +63,8 @@ constructor(private axiosService: AxiosService,
         }
       );
       this.modalService.close();
-      this.router.navigate([`workspaces/${this.workspaceId}`]);
+      this.router.navigate([`workspace/${this.workspaceId}`]);
     }
-    
+    console.log(this.form);
   }
 }

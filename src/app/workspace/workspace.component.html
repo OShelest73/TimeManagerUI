@@ -1,40 +1,11 @@
-<div class="row justify-content-md-center">
-    <div class="col-6">
-        <div class="row">
-            <div class="task-content">
-                <h1>Задания</h1>
-                <div *ngFor="let task of tasks" class="element-entry">
-                    <div class="element-entry-text">
-                        <div class="task-text">
-                            {{task.taskName}}
-                        </div>
-                        <div class="task-info">
-                            {{task.status}}
-                        </div>
-                        <div class="task-info">
-                            {{task.startDate}}
-                        </div>
-                        <div class="task-info">
-                            {{task.finishDate}}
-                        </div>
-                    </div>
-                
-                    <div class="element-entry-actions align-middle">
-                        <a class="btn btn-outline-primary" asp-controller="Tasks" asp-action="Details" asp-route-id="@item.Id" asp-route-workspace="@ViewBag.Workspace">Детали</a>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar">
-                <div class="filters">
-                    <a class="btn btn-outline-primary" asp-controller="Workspaces" asp-action="InviteUsers" asp-route-workspace="@ViewBag.Workspace">Пригласить пользователя</a>
-                    <a class="btn btn-outline-primary" asp-controller="Workspaces" asp-action="Participants" asp-route-workspace="@ViewBag.Workspace">Участники</a>
-                    <button class="btn btn-outline-primary" (click)="modalService.open()">Добавить задание</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<app-list *ngIf="toggleValue === false" [tasks]="tasks">
 
+</app-list>
+
+<app-kanban *ngIf="toggleValue === true" [tasks]="tasks">
+
+</app-kanban>
+<app-sidebar (handleOpenModal)="modalService.open()" (handleToggle)="onToggleChange()"></app-sidebar>
 <app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Создать задание'">
     <app-task-form [workspaceId]="workspaceId">
 

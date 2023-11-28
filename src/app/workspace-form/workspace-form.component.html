@@ -9,17 +9,6 @@
                         <span *ngIf="workspaceName.errors?.required && workspaceName.touched" class="text-danger">Название является обязательным полем</span>
                     </div>
                     <div class="form-group mb-2">
-                        <label class="control-label"></label>
-                        <div>
-                            <span *ngFor="let eval of evaluationMethods" class="radio-element">
-                                <input formControlName="evalMethod" type="radio" id="{{eval}}" value="{{eval}}">
-                                <label>{{eval}}</label>
-                            </span>
-                        </div>
-                        <span *ngIf="evalMethod.errors?.required"
-                            class="text-danger">Метод оценки является обязательным полем</span>
-                    </div>
-                    <div class="form-group mb-2">
                         <button type="submit" class="btn btn-main float-right">Создать</button>
                     </div>
                 </form>

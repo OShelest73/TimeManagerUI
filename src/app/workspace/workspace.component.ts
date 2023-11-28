@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AxiosService } from '../axios.service';
 import { JwtService } from '../jwt.service';
 import { Task } from 'src/models/task';
@@ -12,12 +12,13 @@ import { TaskFormComponent } from '../task-form/task-form.component';
   templateUrl: './workspace.component.html',
   styleUrls: ['./workspace.component.css']
 })
-export class WorkspaceComponent {
+export class WorkspaceComponent implements OnInit{
   public workspaceId: number = 0;
+  public evalMethod: string = "";
   private subscription: Subscription;
   permissions: String[] = [''];
   tasks: Task[] = [];
-  startDate: Date[] = [];
+  toggleValue: boolean = false;
  
   constructor(private axiosService: AxiosService, private jwtService: JwtService, private router: Router,
     private activateRoute: ActivatedRoute, public modalService: ModalService){
@@ -25,6 +26,9 @@ export class WorkspaceComponent {
     }
 
   ngOnInit(): void{
+    const savedToggleValue = localStorage.getItem('toggleValue');
+    this.toggleValue = savedToggleValue === 'true';
+
     this.axiosService.request(
       "GET",
       `/workspace/tasks/${ this.workspaceId }`,
@@ -45,6 +49,11 @@ export class WorkspaceComponent {
     this.roleDefiner();
   }
 
+  onToggleChange(): void {
+    this.toggleValue = !this.toggleValue;
+    localStorage.setItem('toggleValue', String(this.toggleValue));
+  }
+
   roleDefiner() : void {
     const token = this.axiosService.getAuthToken()
     
@@ -52,7 +61,6 @@ export class WorkspaceComponent {
     {
         this.permissions = this.jwtService.getClaim(token, 'usersPermissions');
     }
-
   }
     
 }
