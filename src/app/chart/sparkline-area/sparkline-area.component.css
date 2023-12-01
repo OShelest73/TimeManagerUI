@@ -1,0 +1,8 @@
+stop {
+    stop-color: #51beff;
+}
+
+path {
+    fill: url(#sparkline-gradient);
+    opacity: 0.3;
+}

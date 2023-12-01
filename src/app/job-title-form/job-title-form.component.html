@@ -1,0 +1,23 @@
+<div class="row text workspace-form">
+    <div class="col-md-8 offset-2">
+        <div class="row text">
+            <div >
+                <form (ngSubmit)="submitJobTitle()">
+                    <div class="form-group mb-2">
+                        <label class="control-label">Должность </label>
+                        <input [(ngModel)]="jobTitle" [ngModelOptions]="{standalone: true}" class="form-control"/>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="m-2" *ngFor="let permission of presetPermissions">
+                            <input [(ngModel)]="permission.isPresent" [ngModelOptions]="{standalone: true}" type="checkbox">
+                            {{permission.permission}}
+                        </label>
+                    </div>
+                    <div class="form-group mb-2">
+                        <button type="submit" class="btn btn-main float-right">Создать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,5 @@
-<p>sparkline-chart works!</p>
+<svg [attr.width]="width" [attr.height]="height" [style.left.px]="-margin" [style.top.px]="-margin">
+    <svg:g app-sparkline-area [points]="computedPoints"></svg:g>
+    <svg:g app-sparkline-line [points]="computedPoints"></svg:g>
+    <svg:g app-sparkline-dots [points]="computedPoints"></svg:g>
+</svg>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormArray } from '@angular/forms';
 import { AxiosService } from '../axios.service';
 import { Router } from '@angular/router';
+import { ModalService } from '../modal.service';
+import { JwtService } from '../jwt.service';
 
 export interface JobTitle{
   title: String;
@@ -14,8 +16,8 @@ export interface JobTitle{
   styleUrls: ['./job-title.component.css']
 })
 export class JobTitleComponent {
-constructor(private axiosService: AxiosService,
-  private router: Router){}
+constructor(private axiosService: AxiosService, public modalService: ModalService,
+  private router: Router, private jwtService: JwtService){}
 
   showDropdown = false;
   jobTitles: JobTitle[] = [];
@@ -26,6 +28,8 @@ constructor(private axiosService: AxiosService,
   ];
 
   responcePermissions: String[] = [];
+  selectedJobTitleIndex = -1;
+  permissions: String[] = [''];
 
   ngOnInit(){
     this.axiosService.request(
@@ -44,14 +48,25 @@ constructor(private axiosService: AxiosService,
         }
       }
     );
+    this.roleDefiner();
+  }
+
+  roleDefiner() : void {
+    const token = this.axiosService.getAuthToken()
+    
+    if(token !== null)
+    {
+        this.permissions = this.jwtService.getClaim(token, 'usersPermissions');
+    }
+
   }
   
-  toggleDropdown() {
+  toggleDropdown(index: number) {
+    this.selectedJobTitleIndex = index;
     this.showDropdown = !this.showDropdown;
   }
 
   buildForm(permissions: String[]) {
-    console.log(this.jobTitles);
     if (this.showDropdown === true)
     {
       for(let i = 0; i < permissions.length; i++)

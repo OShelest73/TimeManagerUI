@@ -25,7 +25,12 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { UsersSidebarComponent } from './users-sidebar/users-sidebar.component';
 import { JobTitleComponent } from './job-title/job-title.component';
 import { UserCreateComponent } from './user-create/user-create.component';
-/*import { SparklineChartComponent } from './chart/sparkline-chart/sparkline-chart.component';*/
+import { JobTitleFormComponent } from './job-title-form/job-title-form.component';
+import { SparklineChartComponent } from './chart/sparkline-chart/sparkline-chart.component';
+import { SparklineLineComponent } from './chart/sparkline-line/sparkline-line.component';
+import { SparklineDotsComponent } from './chart/sparkline-dots/sparkline-dots.component';
+import { SparklineAreaComponent } from './chart/sparkline-area/sparkline-area.component';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -52,14 +57,19 @@ import { UserCreateComponent } from './user-create/user-create.component';
     UsersSidebarComponent,
     JobTitleComponent,
     UserCreateComponent,
-    /*SparklineChartComponent*/
+    JobTitleFormComponent,
+    SparklineChartComponent,
+    SparklineLineComponent,
+    SparklineDotsComponent,
+    SparklineAreaComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

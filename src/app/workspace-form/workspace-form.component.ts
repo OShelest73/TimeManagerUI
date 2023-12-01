@@ -15,7 +15,7 @@ export class WorkspaceFormComponent {
               private router: Router) {}
 
   form = new FormGroup({
-    workspaceName: new FormControl<string>('', Validators.required),
+    workspaceName: new FormControl<string>('', Validators.required)
   });
 
   get workspaceName(){

@@ -56,21 +56,21 @@ export class UserCreateComponent {
     submitUser() {
       if(this.form.valid)
       {
+        console.log(12212);
         this.axiosService.request(
           "POST",
-          "/register",
+          "/user/add",
           {
-            fullName: this.fullName,
-            email: this.email,
-            jobTitle: this.jobTitle,
-            password: this.password
+            fullName: this.form.controls.fullName.value,
+            email: this.form.controls.email.value,
+            jobTitle: this.form.controls.jobTitle.value,
+            password: this.form.controls.password.value
           }
-        ).then(
-          response => {
-            this.axiosService.setAuthToken(response.data.token);
-            this.router.navigate(['workspaces']);
+        ).then(response => {
+          this.router.navigate(['users']);
         }).catch(
           error => {
+            console.log(error);
               this.axiosService.setAuthToken(null);
               this.router.navigate(['']);
           }

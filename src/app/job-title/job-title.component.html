@@ -1,16 +1,16 @@
 <div class="row justify-content-md-center">
     <div class="col-6">
         <h1>Должности</h1>
-        <div *ngFor="let jobTitle of jobTitles">
+        <div *ngFor="let jobTitle of jobTitles; let i = index">
             <div class="element-entry">
                 <div class="element-entry-text">
                     {{jobTitle.title}}
                 </div>
                 <div class="element-entry-actions">
-                    <button (click)="toggleDropdown(); buildForm(jobTitle.permissions)" class="btn btn-outline-primary">Изменить</button>
+                    <button (click)="toggleDropdown(i); buildForm(jobTitle.permissions)" class="btn btn-outline-primary">Изменить</button>
                 </div>
             </div>
-            <div class="element-entry" *ngIf="showDropdown">
+            <div class="element-entry" *ngIf="showDropdown && selectedJobTitleIndex === i">
                 <form (ngSubmit)="submitJobTitle(jobTitle)">
                     <div class="form-group mb-2">
                         <label class="m-2" *ngFor="let permission of presetPermissions">
@@ -26,3 +26,13 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="permissions.includes('Workspaces')" style="position: fixed; right: 30px; bottom: 30px;">
+    <button class="btn btn-main" (click)="modalService.open()">Добавить</button>
+</div>
+
+<app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Добавить должность'">
+    <app-job-title-form>
+
+    </app-job-title-form>
+</app-modal-component>

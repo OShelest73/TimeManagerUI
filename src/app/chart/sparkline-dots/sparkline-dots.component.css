@@ -1,0 +1,11 @@
+circle {
+    r: 8px;
+    fill: #51beff;
+    opacity: 0;
+    transition: opacity 350ms;
+    outline: none;
+}
+
+circle:hover {
+    opacity: 1;
+}

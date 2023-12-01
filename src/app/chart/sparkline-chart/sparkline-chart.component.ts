@@ -1,6 +1,6 @@
-/*import { Component, Input, HostBinding } from "@angular/core";
-import { Point } from "./shared";
-import { getBounds, createLinearScale } from ".";
+import { Component, Input, HostBinding } from "@angular/core";
+import { Point } from "../shared";
+import { getBounds, createLinearScale } from "src/app/chartUtils";
 
 @Component({
   selector: 'app-sparkline-chart',
@@ -11,7 +11,7 @@ export class SparklineChartComponent {
   margin = 10;
   width = 500;
   height = 120;
-  computedPoints: Point[];
+  computedPoints: Point[] = [];
 
   @HostBinding("style.width.px") get containerWidth() {
     return this.width - this.margin * 2;
@@ -42,4 +42,3 @@ export class SparklineChartComponent {
     });
   }
 }
-*/
