@@ -26,3 +26,9 @@
   color: #000;
   cursor: pointer;
 }
+
+.sidebar-buttons{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}

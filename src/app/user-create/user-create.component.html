@@ -1,0 +1,34 @@
+<h1 class="page-heading mb-4">Зарегистрировать нового пользователя</h1>
+
+<div class="row justify-content-md-center">
+    <div class="col-6">
+        <form [formGroup]="form" (ngSubmit)="submitUser()">
+            <div class="form-group mb-2">
+                <label class="control-label">ФИО пользователя</label>
+                <input formControlName="fullName" class="form-control"/>
+                <span *ngIf="fullName.errors?.required && fullName.touched" class="text-danger">ФИО является обязательным полем</span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="control-label">Email </label>
+                <input formControlName="email" type="email" class="form-control"/>
+                <span *ngIf="email.errors?.required && email.touched" class="text-danger">Email является обязательным полем</span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="control-label">Пароль </label>
+                <input formControlName="password" type="password" class="form-control"/>
+                <span *ngIf="(password.errors?.minlength || password.errors?.required) && password.touched" class="text-danger">
+                    Пароль должен содержать не менее 6 символов</span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="control-label">Выберите должность</label>
+                <select formControlName="jobTitle" class="form-control">
+                    <option *ngFor="let title of jobTitles" [ngValue]="title">{{title}}</option>
+                </select>
+                <span *ngIf="jobTitle.errors?.required && jobTitle.touched" class="text-danger">Должность является обязательным полем</span>
+            </div>
+            <div class="form-group mb-2">
+                <button type="submit" class="btn btn-main float-right">Создать</button>
+            </div>
+        </form>
+    </div>
+</div>

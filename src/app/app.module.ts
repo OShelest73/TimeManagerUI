@@ -19,6 +19,13 @@ import { UsersComponent } from './users/users.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { ListComponent } from './list/list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { WorkspaceUsersComponent } from './workspace-users/workspace-users.component';
+import { StatsComponent } from './stats/stats.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { UsersSidebarComponent } from './users-sidebar/users-sidebar.component';
+import { JobTitleComponent } from './job-title/job-title.component';
+import { UserCreateComponent } from './user-create/user-create.component';
+/*import { SparklineChartComponent } from './chart/sparkline-chart/sparkline-chart.component';*/
 
 
 @NgModule({
@@ -38,7 +45,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     UsersComponent,
     KanbanComponent,
     ListComponent,
-    SidebarComponent
+    SidebarComponent,
+    WorkspaceUsersComponent,
+    StatsComponent,
+    TimelineComponent,
+    UsersSidebarComponent,
+    JobTitleComponent,
+    UserCreateComponent,
+    /*SparklineChartComponent*/
   ],
   imports: [
     BrowserModule,

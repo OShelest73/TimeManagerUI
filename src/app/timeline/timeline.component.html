@@ -1,0 +1,11 @@
+<div class="timeline">
+    <div class="timeline-marker" *ngFor="let task of tasks" (mouseenter)="showInfo = true" (mouseleave)="showInfo = false">
+        <div class="marker" [ngStyle]="getMarkerStyles(task)"></div>
+        <div class="info" *ngIf="showInfo && task.startDate !== task.endDate">
+        <span>{{ task.name }}</span>
+        <span>{{ task.startDate | date }}</span>
+        <span>{{ task.endDate | date }}</span>
+        <!-- Добавьте другую дополнительную информацию, если необходимо -->
+        </div>
+    </div>
+</div>

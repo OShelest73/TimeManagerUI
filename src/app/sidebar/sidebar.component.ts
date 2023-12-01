@@ -8,6 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SidebarComponent {
   @Output() handleToggle: EventEmitter<void> = new EventEmitter<void>();
   @Output() handleOpenModal: EventEmitter<void> = new EventEmitter<void>();
+  @Output() handleUserManagement: EventEmitter<void> = new EventEmitter<void>();
   isSidebarOpen = false;
 
   toggleSidebar(): void {
@@ -20,5 +21,9 @@ export class SidebarComponent {
 
   toggle(): void{
     this.handleToggle.emit();
+  }
+
+  userManagement(): void{
+    this.handleUserManagement.emit();
   }
 }

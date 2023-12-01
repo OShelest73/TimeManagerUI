@@ -5,7 +5,8 @@
 <app-kanban *ngIf="toggleValue === true" [tasks]="tasks">
 
 </app-kanban>
-<app-sidebar (handleOpenModal)="modalService.open()" (handleToggle)="onToggleChange()"></app-sidebar>
+<app-sidebar (handleOpenModal)="modalService.open()" (handleToggle)="onToggleChange()"
+(handleUserManagement)="onUserManagement()"></app-sidebar>
 <app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Создать задание'">
     <app-task-form [workspaceId]="workspaceId">
 

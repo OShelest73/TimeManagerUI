@@ -1,0 +1,9 @@
+<div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
+    <div class="sidebar-buttons">
+        <button class="btn btn-outline-primary mb-2" (click)="userCreation()">Создать пользователя</button>
+        <button class="btn btn-outline-primary mb-2" (click)="jobTitleManagement()">Управление должностями</button>
+    </div>
+</div>
+<button class="sidebar-toggle" (click)="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+</button>

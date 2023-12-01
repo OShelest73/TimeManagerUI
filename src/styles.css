@@ -72,12 +72,12 @@
     border-width: 3px;
 }
 
-.btn-main:hover {
+/*.btn-main:hover {
     color: #1B6EC2;
     border-color: #1B6EC2;
     background-color: #FFFFFF;
     border-width: 3px;
-}
+}*/
 
 .input-section {
     margin-bottom: 2rem;
@@ -158,12 +158,12 @@ option[selected] {
     width: 30%;
 }
 
-.sidebar {
+/*.sidebar {
     display: flex;
     flex-direction: column;
     width: 30%;
     margin: 20px 0;
-}
+}*/
 
 .search-box{
     display: flex;

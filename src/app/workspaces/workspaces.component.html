@@ -12,6 +12,10 @@
     </div>
 </div>
 
+<div *ngIf="permissions.includes('Employees')" style="position: fixed; right: 30px; top: 30px;">
+    <button class="btn btn-main" routerLink="/users"><i class="fas fa-user" style="font-size: 30px;"></i><p>Сотрудники</p></button>
+</div>
+
 <div *ngIf="permissions.includes('Workspaces')" style="position: fixed; right: 30px; bottom: 30px;">
     <button class="btn btn-main" (click)="modalService.open()">Создать</button>
 </div>

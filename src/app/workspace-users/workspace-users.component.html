@@ -3,10 +3,10 @@
         <div *ngFor="let user of users" class="element-entry">
             <div class="element-entry-text">
                 <div class="task-text">
-                    {{user.email}}
+                    {{user.fullName}}
                 </div>
                 <div class="user-info">
-                    {{user.fullName}}
+                    {{user.email}}
                 </div>
                 <div class=user-info>
                     {{user.jobTitle}}
@@ -14,13 +14,14 @@
             </div>
     
             <div class="element-entry-actions align-middle">
-                <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.EmailAddress">Детали </a>
-                <a class="btn btn-outline-danger" asp-action="DeleteConfirm" asp-route-id="@item.EmailAddress">Удалить </a>
+                <a class="btn btn-outline-primary" routerLink="stats/{{user.id}}">
+                    Статистика 
+                </a>
+                <a class="btn btn-outline-danger">Удалить </a>
             </div>
         </div>
     </div>
 </div>
-
-<app-users-sidebar (handleJobTitle)="handleJobTitle()" (handleUserCreation)="handleUserCreation()">
-
-</app-users-sidebar>
+<div style="position: fixed; right: 30px; bottom: 30px;">
+    <button class="btn btn-main" (click)="modalService.open()">Пригласить</button>
+</div>

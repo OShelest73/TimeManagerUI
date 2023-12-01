@@ -14,7 +14,6 @@ import { TaskFormComponent } from '../task-form/task-form.component';
 })
 export class WorkspaceComponent implements OnInit{
   public workspaceId: number = 0;
-  public evalMethod: string = "";
   private subscription: Subscription;
   permissions: String[] = [''];
   tasks: Task[] = [];
@@ -52,6 +51,10 @@ export class WorkspaceComponent implements OnInit{
   onToggleChange(): void {
     this.toggleValue = !this.toggleValue;
     localStorage.setItem('toggleValue', String(this.toggleValue));
+  }
+
+  onUserManagement(): void {
+    this.router.navigate([`workspace/users/${this.workspaceId}`]);
   }
 
   roleDefiner() : void {

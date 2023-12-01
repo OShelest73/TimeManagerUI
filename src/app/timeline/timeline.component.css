@@ -1,0 +1,45 @@
+.timeline {
+    position: relative;
+    height: 20px;
+    background-color: #dc6262;
+    margin-bottom: 20px;
+  }
+  
+  .timeline-marker {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .marker {
+    width: 4px;
+    height: 100%;
+    background-color: #2d7bbf;
+  }
+  
+  .info {
+    position: absolute;
+    top: -30px;
+    left: -50%;
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    opacity: 0.9;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  
+  .info span {
+    display: block;
+  }
+  
+  .timeline-marker:hover .marker {
+    background-color: #ff0000;
+  }
+  
+  .timeline-marker:hover .info {
+    background-color: #ff0000;
+  }

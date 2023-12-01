@@ -7,18 +7,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-workspace-users',
+  templateUrl: './workspace-users.component.html',
+  styleUrls: ['./workspace-users.component.css']
 })
-export class UsersComponent {
+export class WorkspaceUsersComponent {
   users: User[] = [];
   permissions: String[] = [''];
   public workspaceId: number = 0;
+  private subscription: Subscription;
 
 
   constructor(private axiosService: AxiosService, private jwtService: JwtService,
     public modalService: ModalService, private router: Router, private activateRoute: ActivatedRoute){
+      this.subscription = activateRoute.params.subscribe(params=>this.workspaceId=params["id"])
     }
 
   ngOnInit(): void {
@@ -42,23 +44,13 @@ export class UsersComponent {
     this.roleDefiner();
   }
 
-  roleDefiner() : void {
-    const token = this.axiosService.getAuthToken()
-    
-    if(token !== null)
-    {
-        this.permissions = this.jwtService.getClaim(token, 'usersPermissions');
+    roleDefiner() : void {
+      const token = this.axiosService.getAuthToken()
+      
+      if(token !== null)
+      {
+          this.permissions = this.jwtService.getClaim(token, 'usersPermissions');
+      }
+
     }
-
-  }
-
-  handleJobTitle()
-  {
-    this.router.navigate(['users/jobTitles'])
-  }
-
-  handleUserCreation()
-  {
-    this.router.navigate(['users/create'])
-  }
 }
