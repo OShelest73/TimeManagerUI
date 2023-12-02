@@ -1,31 +1,31 @@
-import { Component } from '@angular/core';
-import { AxiosService } from "../axios.service";
+import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AxiosService } from '../axios.service';
+import { ModalService } from '../modal.service';
+import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { JwtService } from '../jwt.service';
-import { ModalService } from '../modal.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-workspace-users',
-  templateUrl: './workspace-users.component.html',
-  styleUrls: ['./workspace-users.component.css']
+  selector: 'app-workspace-invite-form',
+  templateUrl: './workspace-invite-form.component.html',
+  styleUrls: ['./workspace-invite-form.component.css']
 })
-export class WorkspaceUsersComponent {
-  users: User[] = [];
-  permissions: String[] = [''];
-  public workspaceId: number = 0;
-  private subscription: Subscription;
+export class WorkspaceInviteFormComponent {
+  constructor(private axiosService: AxiosService,
+    private modalService: ModalService,
+    private router: Router, private jwtService: JwtService) { }
 
-  constructor(private axiosService: AxiosService, private jwtService: JwtService,
-    public modalService: ModalService, private router: Router, private activateRoute: ActivatedRoute) {
-    this.subscription = activateRoute.params.subscribe(params => this.workspaceId = params["id"])
-  }
+  @Input() workspaceId: number = 0;
+  permissions: String[] = [''];
+  users: User[] = []
+
+  visibleFlags = Array(this.users.length).fill(true);
 
   ngOnInit(): void {
     this.axiosService.request(
       "GET",
-      `workspace/users/${this.workspaceId}`,
+      `user/invite/${this.workspaceId}`,
       {}
     ).then(
       (response) => {
@@ -43,13 +43,14 @@ export class WorkspaceUsersComponent {
     this.roleDefiner();
   }
 
-  onRemove(user: User){
+  onInvite(user: User, i: number)
+  {
     this.axiosService.request(
       "POST",
-      "workspace/user/remove",
+      "user/invite",
       {
-        userId: user.id,
-        workspaceId: Number(this.workspaceId)
+        userId: user.id, 
+        workspaceId: Number(this.workspaceId),
       }
     ).catch(
         (error) => {
@@ -61,7 +62,7 @@ export class WorkspaceUsersComponent {
           }
         }
       );
-    this.roleDefiner();
+      this.visibleFlags[i] = false;
   }
 
   roleDefiner(): void {

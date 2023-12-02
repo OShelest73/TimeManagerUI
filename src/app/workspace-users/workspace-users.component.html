@@ -17,11 +17,18 @@
                 <a class="btn btn-outline-primary" routerLink="stats/{{user.id}}">
                     Статистика 
                 </a>
-                <a class="btn btn-outline-danger">Удалить </a>
+                <a class="btn btn-outline-danger" (click)="onRemove(user)">Удалить </a>
             </div>
         </div>
     </div>
 </div>
+
 <div style="position: fixed; right: 30px; bottom: 30px;">
     <button class="btn btn-main" (click)="modalService.open()">Пригласить</button>
 </div>
+
+<app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Пригласить пользователя'">
+    <app-workspace-invite-form [workspaceId]="workspaceId">
+
+    </app-workspace-invite-form>
+</app-modal-component>

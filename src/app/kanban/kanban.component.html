@@ -15,7 +15,7 @@
             </div>
         
             <div class="element-entry-actions align-middle">
-                <a routerLink="/workspace/" class="btn"
+                <a routerLink="task/{{task.id}}" class="btn"
                 [ngClass]="{'btn-outline-primary': task.status === 'Предстоит'}">Детали</a>
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
         
             <div class="element-entry-actions align-middle">
-                <a routerLink="/workspace/" class="btn"
+                <a routerLink="task/{{task.id}}" class="btn"
                 [ngClass]="{'btn-outline-primary': task.status === 'Выполняется'}">Детали</a>
             </div>
         </div>
@@ -53,7 +53,7 @@
             </div>
         
             <div class="element-entry-actions align-middle">
-                <a routerLink="/workspace/" class="btn"
+                <a routerLink="task/{{task.id}}" class="btn"
                 [ngClass]="{'btn-outline-primary': task.status === 'Завершено'}">Детали</a>
             </div>
         </div>

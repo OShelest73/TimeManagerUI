@@ -11,9 +11,9 @@ import { currentDateValidator, dateRangeValidator } from '../dateTimeValidators'
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent {
-constructor(private axiosService: AxiosService, 
-              private modalService: ModalService,
-              private router: Router) {}
+  constructor(private axiosService: AxiosService,
+    private modalService: ModalService,
+    private router: Router) { }
 
   @Input() workspaceId: number = 0;
 
@@ -25,35 +25,34 @@ constructor(private axiosService: AxiosService,
     finishDate: new FormControl(new Date(), currentDateValidator)
   }, { validators: dateRangeValidator() });
 
-  get taskName(){
+  get taskName() {
     return this.form.controls.taskName as FormControl;
   }
-  get description(){
+  get description() {
     return this.form.controls.description as FormControl;
   }
-  get notes(){
+  get notes() {
     return this.form.controls.notes as FormControl;
   }
-  get startDate(){
+  get startDate() {
     return this.form.controls.startDate as FormControl;
   }
-  get finishDate(){
+  get finishDate() {
     return this.form.controls.finishDate as FormControl;
   }
 
   submitTask() {
-    if(!this.form.invalid)
-    {
+    if (!this.form.invalid) {
       this.axiosService.request(
         "POST",
         "/task/add",
         {
-          taskName : this.form.controls.taskName.value,
-          description : this.form.controls.description.value,
-          notes : this.form.controls.notes.value,
-          startDate : this.form.controls.startDate.value,
-          finishDate : this.form.controls.finishDate.value,
-          workspaceId : this.workspaceId,
+          taskName: this.form.controls.taskName.value,
+          description: this.form.controls.description.value,
+          notes: this.form.controls.notes.value,
+          startDate: this.form.controls.startDate.value,
+          finishDate: this.form.controls.finishDate.value,
+          workspaceId: this.workspaceId,
         }
       ).catch(
         (error) => {

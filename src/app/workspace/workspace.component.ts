@@ -12,7 +12,7 @@ import { TaskFormComponent } from '../task-form/task-form.component';
   templateUrl: './workspace.component.html',
   styleUrls: ['./workspace.component.css']
 })
-export class WorkspaceComponent implements OnInit{
+export class WorkspaceComponent{
   public workspaceId: number = 0;
   private subscription: Subscription;
   permissions: String[] = [''];

@@ -31,6 +31,8 @@ import { SparklineLineComponent } from './chart/sparkline-line/sparkline-line.co
 import { SparklineDotsComponent } from './chart/sparkline-dots/sparkline-dots.component';
 import { SparklineAreaComponent } from './chart/sparkline-area/sparkline-area.component';
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { TaskEditFormComponent } from './task-edit-form/task-edit-form.component';
+import { WorkspaceInviteFormComponent } from './workspace-invite-form/workspace-invite-form.component';
 
 
 @NgModule({
@@ -61,7 +63,9 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     SparklineChartComponent,
     SparklineLineComponent,
     SparklineDotsComponent,
-    SparklineAreaComponent
+    SparklineAreaComponent,
+    TaskEditFormComponent,
+    WorkspaceInviteFormComponent
   ],
   imports: [
     BrowserModule,

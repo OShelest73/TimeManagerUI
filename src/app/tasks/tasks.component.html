@@ -1,59 +1,38 @@
-<!--<div class="element-entry">
-    <div class="element-entry-text">
-        <div class="task-text">
-            @Html.DisplayFor(modelItem => item.TaskName)
-        </div>
-        <div class="task-info">
-            @Html.DisplayFor(modelItem => item.Status.StatusName)
-        </div>
-        <div class="task-info">
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </div>
-        <div class="task-info">
-            @item.FinishDate.ToLocalTime().ToString("HH:mm\\/dd.MM")
-        </div>
-    </div>
+<h1 class="page-heading text-uppercase mb-4">Детали задания</h1>
 
-    <div class="element-entry-actions align-middle">
-        <a class="btn btn-outline-primary" asp-controller="Tasks" asp-action="Details" asp-route-id="@item.Id" asp-route-workspace="@ViewBag.Workspace">Детали</a>
+<div class="row justify-content-center detail-form">
+    <div class="col-6 form-layout">
+        <div class="task-detail-text">
+            <div class="mb-2">Дата начала: {{task.startDate}}</div>
+            <div class="mb-2">Дата завершения: {{task.finishDate}}</div>
+            <div class="fw-bold mb-2 task-detail-task">Задание: {{task.taskName}}</div>
+            <div>Описание:</div>
+            <div class="mb-2">{{task.description}}</div>
+            <div class="task-detail-task">
+                <div>{{task.status}}</div>
+            </div>
+            <div class="mb-2">Оценка сложности: {{task.storyPoint}}</div>
+            <div class="mb-2" *ngIf="task.notes">
+                <div>Примечания к заданию:</div>
+                <div class="mb-2">
+                    {{task.notes}}
+                </div>
+            </div>
+
+            <div>
+                <button (click)="onAppoint()" *ngIf="permissions.includes('Tasks')" class="btn btn-outline-primary m-2">
+                    Назначенные пользователи</button>
+                <button (click)="modalService.open()" *ngIf="permissions.includes('Tasks')" class="btn btn-outline-primary m-2">
+                    Изменить</button>
+                <button (click)="onDelete()" *ngIf="permissions.includes('Tasks')" class="btn btn-outline-primary m-2">
+                    Удалить</button>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="sidebar">
-    <form class="search-box">
-        <input name="searchString" type="text" class="form-control rounded-control" placeholder="Найти по названию или описанию"/>
-        <button class="btn btn-main search-btn" type="submit"><i class="bi bi-search"></i></button>
-    </form>
+<app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Изменить задание'">
+    <app-task-edit-form [workspaceId]="workspaceId" [task]="task">
 
-    <div>
-        <div class="filters">
-            <span class="text-uppercase fw-bold">Категории</span>
-                
-            <a asp-action="Index" asp-route-statusId="@TempData["sortStatus"]">Все</a>
-
-            @foreach (var category in ViewBag.Categories)
-            {
-                <a asp-action="Index" asp-route-categoryId="@category.Id" asp-route-statusId="@TempData["sortStatus"]">@category.CategoryName</a>
-            }
-        </div>
-        <div class="filters">
-            <span class="text-uppercase fw-bold">Статусы</span>
-                
-            <a asp-action="Index" asp-route-categoryId="@TempData["sortCategory"]">Все</a>
-
-            @foreach (var status in ViewBag.Statuses)
-            {
-                <a asp-action="Index" asp-route-statusId="@status.Id" asp-route-categoryId="@TempData["sortCategory"]">@status.StatusName</a>
-            }
-        </div>
-    </div>
-
-    @if (User.IsInRole("Manager"))
-    {
-        <div class="filters">
-            <a class="btn btn-outline-primary" asp-controller="Workspaces" asp-action="InviteUsers" asp-route-workspace="@ViewBag.Workspace">Пригласить пользователя</a>
-            <a class="btn btn-outline-primary" asp-controller="Workspaces" asp-action="Participants" asp-route-workspace="@ViewBag.Workspace">Участники</a>
-            <a class="btn btn-outline-primary" asp-controller="Tasks" asp-action="Create" asp-route-workspace="@ViewBag.Workspace">Добавить задание</a>
-        </div>
-    }
-</div>-->
+    </app-task-edit-form>
+</app-modal-component>

@@ -1,0 +1,38 @@
+<div class="row text workspace-form">
+    <div class="col-md-8 offset-2">
+        <div class="row text">
+            <div >
+                <form [formGroup]="form" (ngSubmit)="submitTask()">
+                    <div class="form-group mb-2">
+                        <label class="control-label">Название задания </label>
+                        <input formControlName="taskName" [(ngModel)]="task.taskName" class="form-control"/>
+                        <!--<span *ngIf="workspaceName.errors?.required && workspaceName.touched" class="text-danger">Название является обязательным полем</span>-->
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="control-label">Описание </label>
+                        <input formControlName="description" [(ngModel)]="task.description" class="form-control"/>
+                        <!--<span *ngIf="workspaceName.errors?.required && workspaceName.touched" class="text-danger">Название является обязательным полем</span>-->
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="control-label">Примечания </label>
+                        <input type="text" [(ngModel)]="task.notes" formControlName="notes" class="form-control"/>
+                        <!--<span *ngIf="workspaceName.errors?.required && workspaceName.touched" class="text-danger">Название является обязательным полем</span>-->
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="control-label">Дата/время начала </label>
+                        <input type="datetime-local" [(ngModel)]="task.startDate" formControlName="startDate" class="form-control"/>
+                        <!--<span *ngIf="workspaceName.errors?.required && workspaceName.touched" class="text-danger">Название является обязательным полем</span>-->
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="control-label">Дата/время завершения </label>
+                        <input type="datetime-local" [(ngModel)]="task.finishDate" formControlName="finishDate" class="form-control"/>
+                        <!--<span *ngIf="workspaceName.errors?.required && workspaceName.touched" class="text-danger">Название является обязательным полем</span>-->
+                    </div>
+                    <div class="form-group mb-2">
+                        <button type="submit" class="btn btn-main float-right">Изменить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
