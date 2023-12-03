@@ -1,0 +1,33 @@
+<h1 class="page-heading text-uppercase mb-4">Назначенные пользователи</h1>
+
+<div class="row justify-content-md-center">
+    <div class="col-6">
+        <div *ngFor="let user of users" class="element-entry">
+            <div class="element-entry-text">
+                <div class="task-text">
+                    {{user.fullName}}
+                </div>
+                <div class="user-info">
+                    {{user.email}}
+                </div>
+                <div class=user-info>
+                    {{user.jobTitle}}
+                </div>
+            </div>
+    
+            <div class="element-entry-actions align-middle">
+                <a class="btn btn-outline-danger" (click)="onRemove(user)">Удалить </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position: fixed; right: 30px; bottom: 30px;">
+    <button class="btn btn-main" (click)="modalService.open()">Назначить</button>
+</div>
+
+<app-modal-component *ngIf="modalService.isVisible$ | async" [title]="'Назначить пользователя'">
+    <app-appoint-form [taskId]="taskId" [workspaceId]="workspaceId">
+
+    </app-appoint-form>
+</app-modal-component>

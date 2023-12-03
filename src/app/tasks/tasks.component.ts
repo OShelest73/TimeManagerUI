@@ -63,7 +63,7 @@ export class TasksComponent {
   }
 
   onAppoint() {
-
+    this.router.navigate([`workspace/${this.workspaceId}/task/${this.taskId}/appoint`]);
   }
 
   onDelete() {

@@ -9,6 +9,7 @@ import { UsersComponent } from './users/users.component';
 import { JobTitleComponent } from './job-title/job-title.component';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { AppointUserComponent } from './appoint-user/appoint-user.component';
 
 const routes: Routes = [
   {path: '', component: LoginFormComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'users/create', component: UserCreateComponent},
   {path: 'workspace/:id', component: WorkspaceComponent},
   {path: 'workspace/:id/task/:taskId', component: TasksComponent},
+  {path: 'workspace/:id/task/:taskId/appoint', component: AppointUserComponent},
   {path: 'workspace/users/:id', component: WorkspaceUsersComponent},
   {path: 'workspace/users/:id/stats/:userId', component: StatsComponent},
 ];

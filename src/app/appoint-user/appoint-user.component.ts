@@ -1,36 +1,41 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AxiosService } from '../axios.service';
-import { ModalService } from '../modal.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { AxiosService } from "../axios.service";
 import { User } from '../../models/user';
 import { JwtService } from '../jwt.service';
+import { ModalService } from '../modal.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-workspace-invite-form',
-  templateUrl: './workspace-invite-form.component.html',
-  styleUrls: ['./workspace-invite-form.component.css']
+  selector: 'app-appoint-user',
+  templateUrl: './appoint-user.component.html',
+  styleUrls: ['./appoint-user.component.css']
 })
-export class WorkspaceInviteFormComponent {
-  constructor(private axiosService: AxiosService,
-    private modalService: ModalService,
-    private router: Router, private jwtService: JwtService) { }
-
-  @Input() workspaceId: number = 0;
+export class AppointUserComponent {
+  users: User[] = [];
   permissions: String[] = [''];
-  users: User[] = []
+  public workspaceId: number = 0;
+  public taskId: number = 0;
 
-  visibleFlags: boolean[] = [];
+  constructor(private axiosService: AxiosService, private jwtService: JwtService,
+    public modalService: ModalService, private router: Router, private activateRoute: ActivatedRoute) {
+      this.activateRoute.params.subscribe(params => {
+        this.workspaceId = params['id'];
+      });
+
+      this.activateRoute.params.subscribe(params => {
+        this.taskId = params['taskId'];
+      });
+  }
 
   ngOnInit(): void {
     this.axiosService.request(
       "GET",
-      `user/invite/${this.workspaceId}`,
+      `task/appointed/${this.taskId}`,
       {}
     ).then(
       (response) => {
         this.users = response.data;
-        this.visibleFlags = Array(this.users.length).fill(true);
       }).catch(
         (error) => {
           if (error.response.status === 401) {
@@ -44,14 +49,13 @@ export class WorkspaceInviteFormComponent {
     this.roleDefiner();
   }
 
-  onInvite(user: User, i: number)
-  {
+  onRemove(user: User){
     this.axiosService.request(
       "POST",
-      "user/invite",
+      "task/user/remove",
       {
-        userId: user.id, 
-        workspaceId: Number(this.workspaceId),
+        userId: user.id,
+        taskId: Number(this.taskId)
       }
     ).catch(
         (error) => {
@@ -63,7 +67,7 @@ export class WorkspaceInviteFormComponent {
           }
         }
       );
-      this.visibleFlags[i] = false;
+    this.roleDefiner();
   }
 
   roleDefiner(): void {

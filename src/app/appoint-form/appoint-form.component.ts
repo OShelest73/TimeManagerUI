@@ -7,16 +7,17 @@ import { User } from '../../models/user';
 import { JwtService } from '../jwt.service';
 
 @Component({
-  selector: 'app-workspace-invite-form',
-  templateUrl: './workspace-invite-form.component.html',
-  styleUrls: ['./workspace-invite-form.component.css']
+  selector: 'app-appoint-form',
+  templateUrl: './appoint-form.component.html',
+  styleUrls: ['./appoint-form.component.css']
 })
-export class WorkspaceInviteFormComponent {
+export class AppointFormComponent {
   constructor(private axiosService: AxiosService,
     private modalService: ModalService,
     private router: Router, private jwtService: JwtService) { }
 
   @Input() workspaceId: number = 0;
+  @Input() taskId: number = 0;
   permissions: String[] = [''];
   users: User[] = []
 
@@ -25,7 +26,7 @@ export class WorkspaceInviteFormComponent {
   ngOnInit(): void {
     this.axiosService.request(
       "GET",
-      `user/invite/${this.workspaceId}`,
+      `user/toAppoint/${this.workspaceId}/${this.taskId}`,
       {}
     ).then(
       (response) => {
@@ -44,26 +45,25 @@ export class WorkspaceInviteFormComponent {
     this.roleDefiner();
   }
 
-  onInvite(user: User, i: number)
-  {
+  onInvite(user: User, i: number) {
     this.axiosService.request(
       "POST",
-      "user/invite",
+      "task/appoint",
       {
-        userId: user.id, 
-        workspaceId: Number(this.workspaceId),
+        userId: user.id,
+        taskId: Number(this.taskId),
       }
     ).catch(
-        (error) => {
-          if (error.response.status === 401) {
-            this.axiosService.setAuthToken(null);
-            this.router.navigate(['']);
-          } else {
-            this.users = error.response.code;
-          }
+      (error) => {
+        if (error.response.status === 401) {
+          this.axiosService.setAuthToken(null);
+          this.router.navigate(['']);
+        } else {
+          this.users = error.response.code;
         }
-      );
-      this.visibleFlags[i] = false;
+      }
+    );
+    this.visibleFlags[i] = false;
   }
 
   roleDefiner(): void {
