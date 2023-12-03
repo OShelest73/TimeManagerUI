@@ -16,13 +16,15 @@ export class TaskFormComponent {
     private router: Router) { }
 
   @Input() workspaceId: number = 0;
+  storyPoints: number[] = [];
 
   form = new FormGroup({
     taskName: new FormControl<string>('', Validators.required),
     description: new FormControl<string>('', Validators.required),
     notes: new FormControl<string>(''),
     startDate: new FormControl(new Date(), currentDateValidator),
-    finishDate: new FormControl(new Date(), currentDateValidator)
+    finishDate: new FormControl(new Date(), currentDateValidator),
+    dropdownControl: new FormControl()
   }, { validators: dateRangeValidator() });
 
   get taskName() {
@@ -40,6 +42,26 @@ export class TaskFormComponent {
   get finishDate() {
     return this.form.controls.finishDate as FormControl;
   }
+  get dropdownControl() {
+    return this.form.controls.dropdownControl as FormControl;
+  }
+
+  ngOnInit() {
+    this.axiosService.request(
+      "GET",
+      "/task/sp/all",
+      {}
+    ).then(
+      (response) => {
+        this.storyPoints = response.data;
+      }).catch(
+      (error) => {
+        if (error.response.status === 401) {
+          this.axiosService.setAuthToken(null);
+        }
+      }
+    );
+  }
 
   submitTask() {
     if (!this.form.invalid) {
@@ -53,6 +75,7 @@ export class TaskFormComponent {
           startDate: this.form.controls.startDate.value,
           finishDate: this.form.controls.finishDate.value,
           workspaceId: this.workspaceId,
+          storyPoint: this.dropdownControl.value
         }
       ).catch(
         (error) => {
