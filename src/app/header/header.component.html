@@ -1,6 +1,6 @@
 <header *ngIf="isAuthorized">
     <div class="links">
-        <a routerLink="">Задачи</a>
+        <a routerLink="/tasks">Задачи</a>
         <a routerLink="/workspaces">Рабочие пространства</a>
         <a *ngIf="permissions.includes('Employees')" routerLink="/users">Пользователи</a>
     </div>

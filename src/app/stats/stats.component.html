@@ -1,3 +1,33 @@
-<app-timeline>
-    
-</app-timeline>
+<div class="row justify-content-md-center">
+    <div class="col-6">
+        <h1>Статистика</h1>
+        <div class="element-entry">
+            <div class="element-entry-text">
+                Сумма story points: {{sum}}
+            </div>
+            <div class="element-entry-text">
+                Просрочено: {{expirations}}
+            </div>
+            <div class="element-entry-text">
+                Непринято: {{notAccepted}}
+            </div>
+        </div>
+        <div *ngFor="let report of reports" class="element-entry" [ngClass]="{'alert-color': report.isExpired || !report.isAccepted}">
+            <div class="element-entry-text">
+                Срок: {{report.startDate}} - {{report.finishDate}}
+            </div>
+            <div class="element-entry-text">
+                Просрочено: {{report.isExpired ? "Да" : "Нет"}}
+            </div>
+            <div class="element-entry-text">
+                Принято: {{report.isAccepted ? "Да" : "Нет"}}
+            </div>
+            <div class="element-entry-text">
+                SP: {{report.storyPoint}}
+            </div>
+            <div class="element-entry-text">
+                Количество работников: {{report.teamMembersAmount}}
+            </div>
+        </div>
+    </div>
+</div>

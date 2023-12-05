@@ -67,6 +67,21 @@ export class TasksComponent {
   }
 
   onDelete() {
+    this.axiosService.request(
+      "DELETE",
+      `/task/delete/${this.taskId}`,
+      {}
+    ).catch(
+        (error) => {
+          if (error.response.status === 401) {
+            this.axiosService.setAuthToken(null);
+            this.router.navigate(['']);
+          } else {
+            this.task = error.response.code;
+          }
+        }
+      );
+
     this.router.navigate([`workspace/${this.workspaceId}`]);
   }
 

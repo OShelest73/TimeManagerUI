@@ -85,8 +85,8 @@ export class TaskFormComponent {
         }
       );
       this.modalService.close();
+      
       this.router.navigate([`workspace/${this.workspaceId}`]);
     }
-    console.log(this.form);
   }
 }

@@ -1,0 +1,57 @@
+<h1 class="page-heading text-uppercase mb-4">Назначенные задания</h1>
+
+<div class="row justify-content-center detail-form">
+    <h2 class="text-center mx-auto">Назначенные задачи:</h2>
+    <div *ngFor="let task of appointedTasks; let i = index" class="col-6 form-layout">
+        <div class="task-detail-text">
+            <div class="mb-2">Дата начала: {{task.startDate}}</div>
+            <div class="mb-2">Дата завершения: {{task.finishDate}}</div>
+            <div class="fw-bold mb-2 task-detail-task">Задание: {{task.taskName}}</div>
+            <div>Описание:</div>
+            <div class="mb-2">{{task.description}}</div>
+            <div class="task-detail-task">
+                <div>{{task.status}}</div>
+            </div>
+            <div class="mb-2">Оценка сложности: {{task.storyPoint}}</div>
+            <div class="mb-2" *ngIf="task.notes">
+                <div>Примечания к заданию:</div>
+                <div class="mb-2">
+                    {{task.notes}}
+                </div>
+            </div>
+
+            <div>
+                <button *ngIf="visibleFlags1[i]" (click)="onComplete(task, i)" class="btn btn-outline-primary m-2">
+                    Оповестить о завершении</button>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mx-auto" *ngIf="tasksToCheck.length !== 0">Задачи на проверку:</h2>
+    <div *ngFor="let task of tasksToCheck; let i = index" class="col-6 form-layout">
+        <div class="task-detail-text">
+            <div class="mb-2">Дата начала: {{task.startDate}}</div>
+            <div class="mb-2">Дата завершения: {{task.finishDate}}</div>
+            <div class="fw-bold mb-2 task-detail-task">Задание: {{task.taskName}}</div>
+            <div>Описание:</div>
+            <div class="mb-2">{{task.description}}</div>
+            <div class="task-detail-task">
+                <div>{{task.status}}</div>
+            </div>
+            <div class="mb-2">Оценка сложности: {{task.storyPoint}}</div>
+            <div class="mb-2" *ngIf="task.notes">
+                <div>Примечания к заданию:</div>
+                <div class="mb-2">
+                    {{task.notes}}
+                </div>
+            </div>
+
+            <div *ngIf="visibleFlags2[i]">
+                <button (click)="onAccept(task, i)" class="btn btn-outline-primary m-2">
+                    Принять</button>
+                <button (click)="onDecline(task, i)" class="btn btn-outline-danger m-2">
+                    Не принять</button>
+            </div>
+        </div>
+    </div>
+</div>

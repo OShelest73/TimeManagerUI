@@ -15,6 +15,11 @@ export class JwtService {
     return this.jwtHelper.decodeToken(token);
   }
 
+  public getIssuer(token: string): any{
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken?.iss;
+  }
+
   public getClaim(token: string, claimKey: string): any {
     const decodedToken = this.decodeToken(token);
     return decodedToken ? decodedToken[claimKey] : null;

@@ -10,10 +10,12 @@ import { JobTitleComponent } from './job-title/job-title.component';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { AppointUserComponent } from './appoint-user/appoint-user.component';
+import { AppointedTasksComponent } from './appointed-tasks/appointed-tasks.component';
 
 const routes: Routes = [
   {path: '', component: LoginFormComponent},
   {path: 'workspaces', component: WorkspacesComponent},
+  {path: 'tasks', component: AppointedTasksComponent},
   {path: 'users', component: UsersComponent},
   {path: 'users/jobTitles', component: JobTitleComponent},
   {path: 'users/create', component: UserCreateComponent},
@@ -21,7 +23,7 @@ const routes: Routes = [
   {path: 'workspace/:id/task/:taskId', component: TasksComponent},
   {path: 'workspace/:id/task/:taskId/appoint', component: AppointUserComponent},
   {path: 'workspace/users/:id', component: WorkspaceUsersComponent},
-  {path: 'workspace/users/:id/stats/:userId', component: StatsComponent},
+  {path: 'workspace/users/:id/:userId', component: StatsComponent},
 ];
 
 @NgModule({

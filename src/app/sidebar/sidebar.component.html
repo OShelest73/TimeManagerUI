@@ -1,8 +1,8 @@
 <div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
     <div class="sidebar-buttons">
-        <button class="btn btn-outline-primary mb-2" (click)="userManagement()">Управление пользователями</button>
+        <button *ngIf="permissions.includes('Workspaces')" class="btn btn-outline-primary mb-2" (click)="userManagement()">Управление пользователями</button>
         <button class="btn btn-outline-primary mb-2" (click)="toggle()">Переключить отображение</button>
-        <button class="btn btn-outline-primary mb-2" (click)="openModal()">Добавить задание</button>
+        <button *ngIf="permissions.includes('Tasks')" class="btn btn-outline-primary mb-2" (click)="openModal()">Добавить задание</button>
     </div>
 </div>
 <button class="sidebar-toggle" (click)="toggleSidebar()">

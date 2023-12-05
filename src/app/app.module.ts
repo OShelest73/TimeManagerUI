@@ -21,7 +21,6 @@ import { ListComponent } from './list/list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { WorkspaceUsersComponent } from './workspace-users/workspace-users.component';
 import { StatsComponent } from './stats/stats.component';
-import { TimelineComponent } from './timeline/timeline.component';
 import { UsersSidebarComponent } from './users-sidebar/users-sidebar.component';
 import { JobTitleComponent } from './job-title/job-title.component';
 import { UserCreateComponent } from './user-create/user-create.component';
@@ -35,6 +34,7 @@ import { TaskEditFormComponent } from './task-edit-form/task-edit-form.component
 import { WorkspaceInviteFormComponent } from './workspace-invite-form/workspace-invite-form.component';
 import { AppointUserComponent } from './appoint-user/appoint-user.component';
 import { AppointFormComponent } from './appoint-form/appoint-form.component';
+import { AppointedTasksComponent } from './appointed-tasks/appointed-tasks.component';
 
 
 @NgModule({
@@ -57,7 +57,6 @@ import { AppointFormComponent } from './appoint-form/appoint-form.component';
     SidebarComponent,
     WorkspaceUsersComponent,
     StatsComponent,
-    TimelineComponent,
     UsersSidebarComponent,
     JobTitleComponent,
     UserCreateComponent,
@@ -69,7 +68,8 @@ import { AppointFormComponent } from './appoint-form/appoint-form.component';
     TaskEditFormComponent,
     WorkspaceInviteFormComponent,
     AppointUserComponent,
-    AppointFormComponent
+    AppointFormComponent,
+    AppointedTasksComponent
   ],
   imports: [
     BrowserModule,

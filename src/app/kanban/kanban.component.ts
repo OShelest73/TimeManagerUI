@@ -28,7 +28,7 @@ export class KanbanComponent {
         this.column1.push(task as Task);
       } else if (task.status === 'Выполняется' || task.status === 'Просрочено') {
         this.column2.push(task as Task);
-      } else if (task.status === 'Отклонено' || task.status === 'Завершено') {
+      } else if(task.status === 'Отклонено' || task.status === 'Завершено') {
         this.column3.push(task as Task);
       }
     }

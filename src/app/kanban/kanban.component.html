@@ -1,6 +1,6 @@
 <div class="kanban-board">
     <div class="kanban-column">
-        <h1>Не в работе</h1>
+        <h1>Нужно сделать</h1>
         <div *ngFor="let task of column1" class="element-entry"
         [ngClass]="{'alert-color': task.status === 'Без исполнителя'}">
             <div class="element-entry-text">
@@ -25,11 +25,13 @@
         <div *ngFor="let task of column2" class="element-entry"
         [ngClass]="{'alert-color': task.status === 'Просрочено'}">
             <div class="element-entry-text">
-                <div class="task-text">
-                    {{task.taskName}}
-                </div>
-                <div class="task-info">
-                    Завершение: {{task.finishDate}}
+                <div class="kanban-card-info">
+                    <div>
+                        {{task.taskName}}
+                    </div>
+                    <div>
+                        Завершение: {{task.finishDate}}
+                    </div>
                 </div>
             </div>
         
@@ -40,15 +42,17 @@
         </div>
     </div>
     <div class="kanban-column">
-        <h1>Завершены</h1>
-        <div *ngFor="let task of column2" class="element-entry"
+        <h1>Завершено</h1>
+        <div *ngFor="let task of column3" class="element-entry"
         [ngClass]="{'alert-color': task.status === 'Отклонено'}">
             <div class="element-entry-text">
-                <div class="task-text">
-                    {{task.taskName}}
-                </div>
-                <div class="task-info">
-                    Сложность: {{task.storyPoint}}
+                <div class="kanban-card-info">
+                    <div>
+                        {{task.taskName}}
+                    </div>
+                    <div>
+                        {{task.status}}
+                    </div>
                 </div>
             </div>
         

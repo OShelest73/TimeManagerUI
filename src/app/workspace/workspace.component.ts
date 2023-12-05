@@ -35,6 +35,7 @@ export class WorkspaceComponent{
     ).then(
       (response) => {
         this.tasks = response.data;
+        console.log(this.tasks);
       }).catch(
       (error) => {
 		    if (error.response.status === 401 ) {
